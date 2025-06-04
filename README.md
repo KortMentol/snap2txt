@@ -10,10 +10,14 @@ Snap2Txt is a Python utility that captures the structure and contents of a proje
 - **Improved Error Handling**: Clear error messages and graceful handling of file reading issues
 - **Robust Pattern Matching**: Advanced pattern support for ignore and whitelist options
 - **Cross-Platform**: Works consistently across Windows, macOS, and Linux
+- **Smart Binary File Detection**: Automatically skips binary files like images, videos, and executables
+- **PDF Text Extraction**: Extracts text content from PDF files while skipping embedded images
 
 ## Features
 
 - **Complete Capture**: Records the entire file structure and contents of the project.
+- **Smart Text Extraction**: Automatically extracts text from PDF files
+- **Binary File Handling**: Skips binary files like images, videos, and executables
 - **Customizable Filters**: Offers ignore and whitelist options for targeted scanning.
 - **Command-Line Interface**: Simple and easy-to-use command-line tool.
 
@@ -23,6 +27,11 @@ Snap2Txt is a Python utility that captures the structure and contents of a proje
   - [Download Python for Windows](https://www.python.org/downloads/windows/)
   - [Download Python for macOS](https://www.python.org/downloads/macos/)
   - For Linux: Use your distribution's package manager (e.g., `sudo apt install python3 python3-pip`)
+- System libraries for PDF processing (required for PyMuPDF):
+  - **Windows**: No additional requirements
+  - **macOS**: `brew install mupdf`
+  - **Linux (Debian/Ubuntu)**: `sudo apt install libmupdf-dev`
+  - **Linux (Fedora)**: `sudo dnf install mupdf-devel`
 
 ## Installation
 
@@ -84,7 +93,22 @@ Examples of patterns for `.il` and `.wl` files:
 
 Case-insensitive, works on Windows/Linux/Mac.
 
-## Configuration
+## File Handling
+
+### Binary Files
+
+Snap2Txt automatically skips binary files including:
+- Images (.jpg, .png, .gif, .bmp, .tiff, .ico, .svg, .webp)
+- Videos (.mp4, .avi, .mov, .wmv, .flv, .mkv, .webm)
+- Archives (.zip, .rar, .7z, .tar, .gz, .bz2)
+- Executables (.exe, .dll, .so, .dylib)
+- Office documents (.doc, .docx, .xls, .xlsx, .ppt, .pptx)
+
+### PDF Files
+
+PDF files are processed to extract text content while skipping any embedded images or binary data. The text is formatted to preserve the document structure.
+
+### Configuration
 
 Snap2Txt respects two files for filtering:
 

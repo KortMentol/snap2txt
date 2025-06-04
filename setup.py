@@ -21,6 +21,7 @@ setup(
     url='https://github.com/vorniches/snap2txt',
     license='MIT',
     install_requires=[
+        'PyMuPDF>=1.19.0',
     ],
     classifiers=[
         'Programming Language :: Python :: 3',

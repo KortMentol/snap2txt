@@ -1,6 +1,37 @@
 import os
 import sys
 import argparse
+import mimetypes
+import fitz  # PyMuPDF
+
+def is_binary_file(file_path):
+    """Check if a file is binary by reading its first 1024 bytes."""
+    text_chars = bytearray({7, 8, 9, 10, 12, 13, 27} | set(range(0x20, 0x100)) - {0x7f})
+    
+    try:
+        with open(file_path, 'rb') as f:
+            chunk = f.read(1024)
+        if not chunk:  # Empty file
+            return False
+        # Check if any null bytes in the first 1024 bytes
+        if b'\x00' in chunk:
+            return True
+        # Check if the file contains mostly non-text characters
+        non_text = chunk.translate(None, text_chars)
+        return len(non_text) / len(chunk) > 0.3
+    except Exception:
+        return True
+
+def extract_pdf_text(file_path):
+    """Extract text from PDF file using PyMuPDF."""
+    try:
+        doc = fitz.open(file_path)
+        text = []
+        for page in doc:
+            text.append(page.get_text())
+        return '\n'.join(text)
+    except Exception as e:
+        return f"[Error extracting text from PDF: {str(e)}]"
 
 def read_list_file(file_path):
     """
@@ -53,10 +84,24 @@ def match_pattern(path, patterns):
 def save_project_structure_and_files(root_path, output_file, ignore_list=None, whitelist=None):
     """
     Save the project structure and contents of all files in the project to a text file,
-    considering ignore and whitelist.
+    considering ignore and whitelist. Skips binary files and non-text content.
     """
     project_structure = []
     file_contents = []
+    
+    # Common binary file extensions to ignore
+    binary_extensions = {
+        # Images
+        '.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.ico', '.svg', '.webp',
+        # Videos
+        '.mp4', '.avi', '.mov', '.wmv', '.flv', '.mkv', '.webm',
+        # Archives
+        '.zip', '.rar', '.7z', '.tar', '.gz', '.bz2',
+        # Executables and libraries
+        '.exe', '.dll', '.so', '.dylib',
+        # Documents (handled separately)
+        '.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx'
+    }
 
     for root, dirs, files in os.walk(root_path):
         # Filter hidden directories
@@ -78,13 +123,33 @@ def save_project_structure_and_files(root_path, output_file, ignore_list=None, w
         for file in files:
             file_path = os.path.join(root, file)
             rel_path = os.path.relpath(file_path, root_path).replace("\\", "/")
+            
+            # Skip binary files by extension
+            _, ext = os.path.splitext(file.lower())
+            if ext in binary_extensions and ext != '.pdf':  # Handle PDFs separately
+                project_structure.append(f"{rel_path} [SKIPPED - binary file]")
+                continue
+                
+            # Skip binary files by content
+            if is_binary_file(file_path) and ext != '.pdf':  # Still check PDFs
+                project_structure.append(f"{rel_path} [SKIPPED - binary content]")
+                continue
+                
             project_structure.append(rel_path)
-
+            
             try:
-                # Try reading with UTF-8 first, fall back to other encodings
-                encodings = ['utf-8', 'cp1251', 'latin1', 'iso-8859-1', 'windows-1251']
                 content = None
                 
+                # Special handling for PDFs
+                if ext == '.pdf':
+                    content = extract_pdf_text(file_path)
+                    if content:
+                        file_contents.append(f"\n=== File: {rel_path} (PDF content) ===\n")
+                        file_contents.append(f"{content}\n")
+                    continue
+                
+                # Handle text files
+                encodings = ['utf-8', 'cp1251', 'latin1', 'iso-8859-1', 'windows-1251']
                 for encoding in encodings:
                     try:
                         with open(file_path, 'r', encoding=encoding) as f:
