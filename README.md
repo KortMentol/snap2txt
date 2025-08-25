@@ -7,6 +7,7 @@ Snap2Txt is a Python utility that captures the structure and contents of a proje
 ## 🚀 Key Improvements
 
 - **Better Encoding Support**: Handles UTF-8, cp1251, windows-1251, and other encodings with automatic detection
+- **Accurate Code Recognition**: Solves a common issue where other tools (`gitingest.com`, for example) may incorrectly flag text-based source code files (e.g., `.tsx`, `.css`) as binary, ensuring your complete codebase is captured reliably.
 - **Improved Error Handling**: Clear error messages and graceful handling of file reading issues
 - **Robust Pattern Matching**: Advanced pattern support for ignore and whitelist options
 - **Cross-Platform**: Works consistently across Windows, macOS, and Linux
