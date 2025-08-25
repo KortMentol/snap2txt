@@ -12,7 +12,7 @@ Snap2Txt is a Python utility that captures the structure and contents of a proje
 -   **🧩 Robust Pattern Matching**: Advanced pattern support for ignore and whitelist options.
 -   **💻 Cross-Platform**: Works consistently across Windows, macOS, and Linux.
 -   **🚫 Smart Binary File Detection**: Automatically skips binary files like images, videos, and executables.
--   **📄 PDF Text Extraction**: Extracts text content from
+-   **📄 PDF Text Extraction**: Extracts text content from PDF files while skipping embedded images.
 
 ## ✨ Features
 
