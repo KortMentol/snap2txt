@@ -42,7 +42,7 @@ Install Snap2Txt with pip:
 pip install git+https://github.com/KortMentol/snap2txt.git@improved
 ```
 
-    > ℹ️ **Note**: The installation automatically provides .il and .wl files along with the package.
+> **Note**: The installation automatically provides `.il` and `.wl` files along with the package.
 
 ## 💻 Usage
 
