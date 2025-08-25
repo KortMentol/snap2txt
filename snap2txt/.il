@@ -147,3 +147,4 @@ requirements.txt
 db.sqlite3
 docker-compose.yml
 vendors
+package-lock.json
