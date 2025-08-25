@@ -6,35 +6,35 @@ Snap2Txt is a Python utility that captures the structure and contents of a proje
 
 ## 🚀 Key Improvements
 
-- **Better Encoding Support**: Handles UTF-8, cp1251, windows-1251, and other encodings with automatic detection
-- **Accurate Code Recognition**: Solves a common issue where other tools (`gitingest.com`, for example) may incorrectly flag text-based source code files (e.g., `.tsx`, `.css`) as binary, ensuring your complete codebase is captured reliably.
-- **Improved Error Handling**: Clear error messages and graceful handling of file reading issues
-- **Robust Pattern Matching**: Advanced pattern support for ignore and whitelist options
-- **Cross-Platform**: Works consistently across Windows, macOS, and Linux
-- **Smart Binary File Detection**: Automatically skips binary files like images, videos, and executables
-- **PDF Text Extraction**: Extracts text content from PDF files while skipping embedded images
+-   **🌐 Better Encoding Support**: Handles UTF-8, cp1251, windows-1251, and other encodings with automatic detection.
+-   **🎯 Accurate Code Recognition**: Solves a common issue where other tools (`gitingest.com`, for example) may incorrectly flag text-based source code files (e.g., `.tsx`, `.css`) as binary, ensuring your complete codebase is captured reliably.
+-   **🛡️ Improved Error Handling**: Clear error messages and graceful handling of file reading issues.
+-   **🧩 Robust Pattern Matching**: Advanced pattern support for ignore and whitelist options.
+-   **💻 Cross-Platform**: Works consistently across Windows, macOS, and Linux.
+-   **🚫 Smart Binary File Detection**: Automatically skips binary files like images, videos, and executables.
+-   **📄 PDF Text Extraction**: Extracts text content from
 
-## Features
+## ✨ Features
 
-- **Complete Capture**: Records the entire file structure and contents of the project.
-- **Smart Text Extraction**: Automatically extracts text from PDF files
-- **Binary File Handling**: Skips binary files like images, videos, and executables
-- **Customizable Filters**: Offers ignore and whitelist options for targeted scanning.
-- **Command-Line Interface**: Simple and easy-to-use command-line tool.
+-   **Complete Capture**: Records the entire file structure and contents of the project.
+-   **Smart Text Extraction**: Automatically extracts text from PDF files.
+-   **Binary File Handling**: Skips binary files like images, videos, and executables.
+-   **Customizable Filters**: Offers ignore and whitelist options for targeted scanning.
+-   **Command-Line Interface**: Simple and easy-to-use command-line tool.
 
-## Prerequisites
+## 📋 Prerequisites
 
-- [Python 3.6 or higher](https://www.python.org/downloads/) (includes pip)
-  - [Download Python for Windows](https://www.python.org/downloads/windows/)
-  - [Download Python for macOS](https://www.python.org/downloads/macos/)
-  - For Linux: Use your distribution's package manager (e.g., `sudo apt install python3 python3-pip`)
-- System libraries for PDF processing (required for PyMuPDF):
-  - **Windows**: No additional requirements
-  - **macOS**: `brew install mupdf`
-  - **Linux (Debian/Ubuntu)**: `sudo apt install libmupdf-dev`
-  - **Linux (Fedora)**: `sudo dnf install mupdf-devel`
+-   [Python 3.6 or higher](https://www.python.org/downloads/) (includes pip)
+    -   [Download Python for Windows](https://www.python.org/downloads/windows/)
+    -   [Download Python for macOS](https://www.python.org/downloads/macos/)
+    -   For Linux: Use your distribution's package manager (e.g., `sudo apt install python3 python3-pip`)
+-   System libraries for PDF processing (required for PyMuPDF):
+    -   **Windows**: No additional requirements
+    -   **macOS**: `brew install mupdf`
+    -   **Linux (Debian/Ubuntu)**: `sudo apt install libmupdf-dev`
+    -   **Linux (Fedora)**: `sudo dnf install mupdf-devel`
 
-## Installation
+## 📦 Installation
 
 Install Snap2Txt with pip:
 
@@ -42,9 +42,9 @@ Install Snap2Txt with pip:
 pip install git+https://github.com/KortMentol/snap2txt.git@improved
 ```
 
-> **Note**: The installation automatically provides `.il` and `.wl` files along with the package.
+    > ℹ️ **Note**: The installation automatically provides .il and .wl files along with the package.
 
-## Usage
+## 💻 Usage
 
 Navigate to your project directory and run:
 
@@ -54,7 +54,7 @@ snap2txt
 
 By default, Snap2Txt will scan all files and directories in the current folder and produce an output file called `project_contents.txt`.
 
-### Locate the .il and .wl Files
+### 📍 Locate the .il and .wl Files
 
 To find where Snap2Txt's `.il` and `.wl` files are located on your system, run:
 
@@ -64,7 +64,7 @@ snap2txt --show-locations
 
 This will print the full path to each file for easy customization.
 
-### Command Line Options
+### ▶️ Command Line Options
 
 - `--il`: Use ignore list defined in `.il`
 - `--wl`: Use whitelist defined in `.wl`
@@ -83,7 +83,7 @@ snap2txt --il
 snap2txt --wl
 ```
 
-## Pattern Matching
+## 🧩 Pattern Matching
 
 Examples of patterns for `.il` and `.wl` files:
 
@@ -94,7 +94,7 @@ Examples of patterns for `.il` and `.wl` files:
 
 Case-insensitive, works on Windows/Linux/Mac.
 
-## File Handling
+## 📁 File Handling
 
 ### Binary Files
 
@@ -109,7 +109,7 @@ Snap2Txt automatically skips binary files including:
 
 PDF files are processed to extract text content while skipping any embedded images or binary data. The text is formatted to preserve the document structure.
 
-### Configuration
+### 🔧 Configuration
 
 Snap2Txt respects two files for filtering:
 
@@ -134,15 +134,15 @@ node_modules/
 *.md
 ```
 
-## Contributing
+## 🤝 Contributing
 
 Contributions to Snap2Txt are welcome! Feel free to fork the repository, make your changes, and submit a pull request.
 
-## License
+## 📜 License
 
 Snap2Txt is open-sourced software licensed under the [MIT license](LICENSE).
 
-## Uninstallation
+## 🗑️ Uninstallation
 
 To uninstall Snap2Txt:
 
@@ -150,6 +150,6 @@ To uninstall Snap2Txt:
 pip uninstall snap2txt
 ```
 
-## Support
+## 💬 Support
 
 For support, questions, or feedback, please [open an issue](https://github.com/KortMentol/snap2txt/issues) in this repository.
